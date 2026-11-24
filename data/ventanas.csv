@@ -1,0 +1,6 @@
+ventana,peso_relativo,criticidad,req_s,duracion_min
+H1,48,alta,180,12
+H2,36,alta,150,9
+H3,32,media,210,16
+H4,24,media,240,18
+H5,20,baja,90,8

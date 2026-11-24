@@ -1,0 +1,64 @@
+version: "3.9"
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  sagemaker:
+    build: .
+    command: uvicorn sagemaker_runtime.server:app --host 0.0.0.0 --port 8080
+    environment:
+      - MODEL_PATH=/app/artifacts/model_r2.joblib
+      - EXPECTED_SCHEMA=1.0
+    volumes:
+      - ./artifacts:/app/artifacts
+    ports:
+      - "8080:8080"
+
+  api:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    environment:
+      - SAGEMAKER_URL=http://sagemaker:8080/invocations
+      - RABBIT_HOST=rabbitmq
+      - CATALOG_PATH=/app/data/catalogo.csv
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    ports:
+      - "8000:8000"
+    depends_on:
+      - sagemaker
+      - rabbitmq
+
+  worker:
+    build: .
+    command: python worker/consumer.py
+    environment:
+      - RABBIT_HOST=rabbitmq
+      - DB_PATH=/data/analytics.db
+    volumes:
+      - ./runtime_data:/data
+    depends_on:
+      - rabbitmq
+
+  dashboard:
+    build: .
+    command: streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
+    environment:
+      - API_URL=http://api:8000
+      - DB_PATH=/data/analytics.db
+    volumes:
+      - ./runtime_data:/data
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+      - worker

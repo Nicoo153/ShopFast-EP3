@@ -1,0 +1,40 @@
+{
+  "model_version": "r2-logreg-v1.0",
+  "baseline_global": {
+    "accuracy": 0.708,
+    "precision_at_3": 0.069,
+    "recall_at_3": 0.2257,
+    "f1_at_3": 0.1057,
+    "ndcg_at_10": 0.4152,
+    "sesiones_sin_positivos": 109,
+    "sesiones_totales": 280
+  },
+  "logreg_global": {
+    "accuracy": 0.7664,
+    "precision_at_3": 0.1857,
+    "recall_at_3": 0.607,
+    "f1_at_3": 0.2844,
+    "ndcg_at_10": 0.6503,
+    "sesiones_sin_positivos": 109,
+    "sesiones_totales": 280
+  },
+  "logreg_conocidas": {
+    "accuracy": 0.7668,
+    "precision_at_3": 0.19,
+    "recall_at_3": 0.6077,
+    "f1_at_3": 0.2895,
+    "ndcg_at_10": 0.6352,
+    "sesiones_sin_positivos": 71,
+    "sesiones_totales": 193
+  },
+  "logreg_nuevas": {
+    "accuracy": 0.7653,
+    "precision_at_3": 0.1762,
+    "recall_at_3": 0.6053,
+    "f1_at_3": 0.273,
+    "ndcg_at_10": 0.6879,
+    "sesiones_sin_positivos": 38,
+    "sesiones_totales": 87
+  },
+  "artifact_sha256": "e251097e29642ddc5a4e4c1b1d27ec65e2e80952fda10e22c8a034a84f49e6e9"
+}

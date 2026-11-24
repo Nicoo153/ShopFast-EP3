@@ -1,0 +1,9 @@
+recepcion_s,hecho_s,fuente,id,producto,revision,unidades,usuario,tipo
+0,0,stock,s40a,P17,40,8,,
+0,0,stock,s40b,P28,40,6,,
+4,3,web,e19,P17,,,U7,clic
+5,3,web,e19,P17,,,U7,clic
+8,7,stock,s42,P17,42,0,,
+10,5,stock,s41,P17,41,4,,
+12,11,web,e20,P28,,,U8,impresion
+315,315,consulta,r92,,,,U8,inicio

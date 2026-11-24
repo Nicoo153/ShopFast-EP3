@@ -1,0 +1,10 @@
+hito,inicio_s,fin_s,fuente
+deteccion,0,75,sonda
+autorizar,75,165,acta
+red,165,320,control
+artefacto,165,440,registro
+arranque,440,535,servidor
+salud,535,595,sonda
+validar_stock,320,660,inventario
+trafico_5pct,660,690,balanceador
+trafico_objetivo,690,935,negocio
